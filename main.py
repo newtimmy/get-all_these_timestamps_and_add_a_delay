@@ -41,3 +41,14 @@ for line in range(100):
 for i, line in enumerate(open('readme.txt')):
     for match in re.finditer(pattern, line):
         print('Found on line %s: %s' % (i+1, add_delay(match.group(), delay)))
+
+        # Read in the file
+        with open('readme.txt', 'r') as file:
+            filedata = file.read()
+
+        # Replace the target string
+        filedata = filedata.replace(match.group(), add_delay(match.group(), delay))
+
+        # Write the file out again
+        with open('readme.txt', 'w') as file:
+            file.write(filedata)
